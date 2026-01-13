@@ -8,16 +8,20 @@ import Numbers from "@/components/marketing/Numbers";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Hero />
-        <Numbers />
-        <Features />
-        <About />
-        <FAQ />
-        <NewsLetter />
-        <Footer />
-      </main>
-    </div>
+    <main className="w-full">
+      {/* Egységes oldal konténer */}
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+        {/* Fontos: NE legyen items-center/justify-center itt */}
+        <div className="flex flex-col gap-16 py-20">
+          <Hero />
+          <Numbers />
+          <Features />
+          <About />
+          <FAQ />
+          <NewsLetter />
+          <Footer />
+        </div>
+      </div>
+    </main>
   );
 }

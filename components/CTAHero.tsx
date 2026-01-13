@@ -11,12 +11,7 @@ type Props = {
 const CTAHero = ({ label = "Add to your cart", onClick }: Props) => {
   return (
     <div className="pt-6">
-      <Button
-        onClick={onClick}
-        className="h-12 w-fit rounded-none px-10 text-sm font-medium"
-      >
-        {label}
-      </Button>
+      <Button className="h-12 rounded-none px-10">Add to your cart</Button>
     </div>
   );
 };
