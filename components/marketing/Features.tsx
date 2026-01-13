@@ -1,15 +1,10 @@
 "use client";
 
 import React from "react";
+import Section from "@/components/layout/Section";
 import { HandHeart, ShieldOff, BadgeCheck } from "lucide-react";
 
-type Feature = {
-  title: string;
-  desc: string;
-  Icon: React.ElementType;
-};
-
-const features: Feature[] = [
+const features = [
   {
     title: "Natural",
     desc: "Yourself required no at thoughts delicate landlord it be.",
@@ -27,22 +22,18 @@ const features: Feature[] = [
   },
 ];
 
-const Features = () => {
+export default function Features() {
   return (
-    <section className="w-full" id="features">
-      <div className="mx-auto max-w-6xl px-4 py-16 text-center sm:px-6 lg:py-24">
-        {/* Heading */}
+    <Section id="features" containerClassName="py-16 lg:py-24">
+      <div className="text-center">
         <h2 className="text-4xl font-light tracking-[0.18em] text-emerald-800 sm:text-5xl">
-          WHY BERRYLAND?
+          WHY SNAILLIA?
         </h2>
 
         <p className="mx-auto mt-6 max-w-2xl text-sm leading-6 text-zinc-600 sm:text-base">
-          Yourself required no at thoughts delicate landlord it be. Branched
-          dashwood do is whatever it. Farther be chapter at visited married in
-          it pressed.
+          Yourself required no at thoughts delicate landlord it be...
         </p>
 
-        {/* Items */}
         <div className="mt-14 grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-12">
           {features.map((f) => (
             <div key={f.title} className="flex flex-col items-center">
@@ -52,22 +43,16 @@ const Features = () => {
                   strokeWidth={1.5}
                 />
               </div>
-
               <h3 className="mt-6 text-2xl font-semibold text-zinc-900">
                 {f.title}
               </h3>
-
               <p className="mt-4 max-w-xs text-sm leading-6 text-zinc-600">
                 {f.desc}
-                <br />
-                delicate landlord it be.
               </p>
             </div>
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
-};
-
-export default Features;
+}

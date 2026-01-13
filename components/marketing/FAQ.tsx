@@ -1,46 +1,86 @@
+"use client";
+
 import React from "react";
+import Section from "@/components/layout/Section";
+
 import {
   Accordion,
   AccordionItem,
   AccordionPanel,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { section } from "framer-motion/client";
+} from "@/components/ui/accordion"; // coss: Panel (nem Content)
 
-type Props = {};
-const items = [
+const faqs = [
   {
-    content:
-      "Base UI is a library of high-quality unstyled React components for design systems and web apps.",
-    id: "1",
-    title: "What is Base UI?",
+    id: "hours",
+    q: "Mikor érdemes jönni?",
+    a: "A legjobb általában délelőtt (8–11) vagy késő délután. Melegben a bogyók gyorsabban puhulnak, ezért érdemes korábban érkezni.",
   },
   {
-    content:
-      "Head to the \"Quick start\" guide in the docs. If you've used unstyled libraries before, you'll feel at home.",
-    id: "2",
-    title: "How do I get started?",
+    id: "booking",
+    q: "Kell előre bejelentkezni?",
+    a: "Nem kötelező. Szezoncsúcsban érdemes követni a napi státuszt, mert gyorsan fogyhat a szedhető mennyiség.",
   },
   {
-    content: "Of course! Base UI is free and open source.",
-    id: "3",
-    title: "Can I use it for my project?",
+    id: "how",
+    q: "Hogyan működik a szedd magad?",
+    a: "A helyszínen kapsz ládát/dobozt, a kijelölt sorokban szedsz, majd mérlegelés után fizetsz.",
+  },
+  {
+    id: "weather",
+    q: "Esőben nyitva vagytok?",
+    a: "Enyhe esőben általában igen, de nagy esőben vagy felázott talajnál zárva lehetünk. A napi státuszt a főoldalon kommunikáljuk.",
+  },
+  {
+    id: "payment",
+    q: "Lehet kártyával fizetni?",
+    a: "Cél, hogy legyen kártyás fizetés is. A pontos opciókat szezon előtt véglegesítjük.",
+  },
+  {
+    id: "parking",
+    q: "Van parkolási lehetőség?",
+    a: "Igen, a helyszínen lesz kijelölt parkoló. Kérjük, mindig a táblák szerint állj meg.",
   },
 ];
 
-const FAQ = (props: Props) => {
+export default function FAQ() {
   return (
-    <section id="faq">
-      <Accordion className="w-full" defaultValue={["3"]}>
-        {items.map((item) => (
-          <AccordionItem key={item.id} value={item.id}>
-            <AccordionTrigger>{item.title}</AccordionTrigger>
-            <AccordionPanel>{item.content}</AccordionPanel>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </section>
-  );
-};
+    <Section id="faq" containerClassName="py-16 lg:py-24">
+      <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <h2 className="text-4xl font-semibold tracking-tight text-emerald-800 sm:text-5xl">
+            GYIK
+          </h2>
+          <p className="mt-4 max-w-md text-sm leading-6 text-zinc-600 sm:text-base">
+            A legfontosabb infók látogatás előtt. Ha kérdésed van, írj
+            nyugodtan.
+          </p>
+        </div>
 
-export default FAQ;
+        <div>
+          {/* coss: defaultValue string[]; "multiple" prop a több nyitotthoz */}
+          <Accordion className="w-full" defaultValue={[]}>
+            {faqs.map((item) => (
+              <AccordionItem
+                key={item.id}
+                value={item.id}
+                className="border-zinc-200"
+              >
+                <AccordionTrigger className="text-left text-base font-medium text-zinc-900">
+                  {item.q}
+                </AccordionTrigger>
+                <AccordionPanel className="text-sm leading-6 text-zinc-600">
+                  {item.a}
+                </AccordionPanel>
+              </AccordionItem>
+            ))}
+          </Accordion>
+
+          {/* Ha több elem is nyitva lehessen egyszerre, csak add hozzá:
+              <Accordion className="w-full" multiple defaultValue={[]}>
+           */}
+        </div>
+      </div>
+    </Section>
+  );
+}
