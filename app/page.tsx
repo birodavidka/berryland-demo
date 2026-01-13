@@ -3,6 +3,7 @@ import FAQ from "@/components/marketing/FAQ";
 import Features from "@/components/marketing/Features";
 import Footer from "@/components/marketing/Footer";
 import Hero from "@/components/marketing/Hero";
+import NewsLetter from "@/components/marketing/NewsLetter";
 import Numbers from "@/components/marketing/Numbers";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
         <Features />
         <About />
         <FAQ />
+        <NewsLetter />
         <Footer />
       </main>
     </div>
