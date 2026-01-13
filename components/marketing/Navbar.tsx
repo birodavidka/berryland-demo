@@ -7,10 +7,9 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { label: "Products", href: "/products" },
-  { label: "Story", href: "/story" },
-  { label: "Manufacturing", href: "/manufacturing" },
-  { label: "Packaging", href: "/packaging" },
-  { label: "Team", href: "/team" },
+  { label: "Featues", href: "/story" },
+  { label: "about", href: "/manufacturing" },
+  { label: "FAQ", href: "/packaging" },
 ];
 
 export function Navbar() {
@@ -22,7 +21,7 @@ export function Navbar() {
         {/* Left: brand */}
         <Link href="/" className="flex items-center gap-2">
           <span className="text-lg font-semibold tracking-tight">
-            snaililia™
+            berryland™
           </span>
         </Link>
 

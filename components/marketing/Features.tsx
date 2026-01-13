@@ -1,45 +1,72 @@
+"use client";
+
 import React from "react";
+import { HandHeart, ShieldOff, BadgeCheck } from "lucide-react";
 
-type Props = {};
+type Feature = {
+  title: string;
+  desc: string;
+  Icon: React.ElementType;
+};
 
-const FeaturesList = [
+const features: Feature[] = [
   {
-    icon: "",
-    value: "Natural",
-    desc: "asdadasdaosdhaslfdnjlsdnfjalsdkaslm",
+    title: "Natural",
+    desc: "Yourself required no at thoughts delicate landlord it be.",
+    Icon: HandHeart,
   },
   {
-    icon: "",
-    value: "No sideeffect",
-    desc: "asdadasdaosdhaslfdnjlsdnfjalsdkaslm",
+    title: "No Side effect",
+    desc: "Yourself required no at thoughts delicate landlord it be.",
+    Icon: ShieldOff,
   },
   {
-    icon: "",
-    value: "100% organic",
-    desc: "asdadasdaosdhaslfdnjlsdnfjalsdkaslm",
+    title: "100% Organic",
+    desc: "Yourself required no at thoughts delicate landlord it be.",
+    Icon: BadgeCheck,
   },
 ];
 
-const Features = (props: Props) => {
+const Features = () => {
   return (
-    <div className="flex flex-col items-center gap-10">
-      <h1 className="text-3xl">Features</h1>
-      <h2 className="text-sm">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi ea illum
-        quia et porro consectetur veniam numquam officiis, magnam, placeat
-        itaque inventore. Ad amet eos expedita. Minima architecto quo
-        laboriosam.
-      </h2>
-      <div className="flex">
-        {FeaturesList.map((feature) => (
-          <div className="flex flex-col" key={feature.value}>
-            <div>{feature.icon}</div>
-            <h3>{feature.value}</h3>
-            <p>{feature.desc}</p>
-          </div>
-        ))}
+    <section className="w-full">
+      <div className="mx-auto max-w-6xl px-4 py-16 text-center sm:px-6 lg:py-24">
+        {/* Heading */}
+        <h2 className="text-4xl font-light tracking-[0.18em] text-emerald-800 sm:text-5xl">
+          WHY BERRYLAND?
+        </h2>
+
+        <p className="mx-auto mt-6 max-w-2xl text-sm leading-6 text-zinc-600 sm:text-base">
+          Yourself required no at thoughts delicate landlord it be. Branched
+          dashwood do is whatever it. Farther be chapter at visited married in
+          it pressed.
+        </p>
+
+        {/* Items */}
+        <div className="mt-14 grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-12">
+          {features.map((f) => (
+            <div key={f.title} className="flex flex-col items-center">
+              <div className="flex h-16 w-16 items-center justify-center">
+                <f.Icon
+                  className="h-12 w-12 text-emerald-700"
+                  strokeWidth={1.5}
+                />
+              </div>
+
+              <h3 className="mt-6 text-2xl font-semibold text-zinc-900">
+                {f.title}
+              </h3>
+
+              <p className="mt-4 max-w-xs text-sm leading-6 text-zinc-600">
+                {f.desc}
+                <br />
+                delicate landlord it be.
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
