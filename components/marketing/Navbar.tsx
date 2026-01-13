@@ -6,7 +6,7 @@ import { Search, ShoppingBag, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { label: "products", href: "/products" },
+  { label: "products", href: "/shop" },
   { label: "featues", href: "/story" },
   { label: "about", href: "/manufacturing" },
   { label: "FAQ", href: "/packaging" },
