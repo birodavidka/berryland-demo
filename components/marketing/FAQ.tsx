@@ -5,6 +5,7 @@ import {
   AccordionPanel,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { section } from "framer-motion/client";
 
 type Props = {};
 const items = [
@@ -29,14 +30,16 @@ const items = [
 
 const FAQ = (props: Props) => {
   return (
-    <Accordion className="w-full" defaultValue={["3"]}>
-      {items.map((item) => (
-        <AccordionItem key={item.id} value={item.id}>
-          <AccordionTrigger>{item.title}</AccordionTrigger>
-          <AccordionPanel>{item.content}</AccordionPanel>
-        </AccordionItem>
-      ))}
-    </Accordion>
+    <section id="faq">
+      <Accordion className="w-full" defaultValue={["3"]}>
+        {items.map((item) => (
+          <AccordionItem key={item.id} value={item.id}>
+            <AccordionTrigger>{item.title}</AccordionTrigger>
+            <AccordionPanel>{item.content}</AccordionPanel>
+          </AccordionItem>
+        ))}
+      </Accordion>
+    </section>
   );
 };
 

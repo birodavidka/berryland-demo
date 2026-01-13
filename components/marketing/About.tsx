@@ -44,7 +44,7 @@ function CrossCard({ title, desc, Icon }: WhyCard) {
 
 export default function About() {
   return (
-    <section className="w-full">
+    <section className="w-full" id="about">
       <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 lg:py-20">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* LEFT: image placeholder */}

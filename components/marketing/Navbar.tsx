@@ -1,60 +1,88 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Search, ShoppingBag, User } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 import { cn } from "@/lib/utils";
+import { Search, ShoppingBag, User } from "lucide-react";
 
 const navItems = [
-  { label: "products", href: "/shop" },
-  { label: "featues", href: "/story" },
-  { label: "about", href: "/manufacturing" },
-  { label: "FAQ", href: "/packaging" },
+  { label: "features", id: "features" },
+  { label: "about", id: "about" },
+  { label: "faq", id: "faq" },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const goToSection = (id: string) => {
+    // ha nem a landing-en vagyunk, menjünk vissza oda hash-sel
+    if (pathname !== "/") {
+      router.push(`/#${id}`);
+      return;
+    }
+    // landing-en vagyunk: AnchorLink intézi
+  };
 
   return (
     <header className="w-full">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        {/* Left: brand */}
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-lg font-semibold tracking-tight">
-            berryland™
-          </span>
+      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
+        <Link href="/" className="text-lg font-semibold tracking-tight">
+          Berryland™
         </Link>
 
-        {/* Center: nav */}
         <nav className="hidden items-center gap-8 md:flex">
-          {navItems.map((item) => {
-            const isActive =
-              pathname === item.href || pathname?.startsWith(item.href + "/");
+          {/* Products külön oldal */}
+          <Link
+            href="/shop"
+            className={cn(
+              "relative text-sm font-medium text-neutral-800 hover:text-neutral-950",
+              pathname === "/shop" && "text-neutral-950"
+            )}
+          >
+            Products
+            <span
+              className={cn(
+                "absolute -bottom-2 left-0 h-[2px] w-full scale-x-0 bg-neutral-900 transition-transform duration-200",
+                pathname === "/shop" && "scale-x-100"
+              )}
+            />
+          </Link>
 
+          {/* In-page szekciók */}
+          {navItems.map((item) => {
+            const href = `#${item.id}`;
+
+            // landing-en AnchorLink (smooth + offset)
+            if (pathname === "/") {
+              return (
+                <AnchorLink
+                  key={item.id}
+                  href={href}
+                  offset="80"
+                  className="relative text-sm font-medium text-neutral-800 hover:text-neutral-950"
+                >
+                  {item.label}
+                </AnchorLink>
+              );
+            }
+
+            // más oldalon sima gomb -> visszanavigál a landingre hash-sel
             return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "relative text-sm font-medium text-neutral-800 transition-colors hover:text-neutral-950",
-                  isActive && "text-neutral-950"
-                )}
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => goToSection(item.id)}
+                className="relative text-sm font-medium text-neutral-800 hover:text-neutral-950"
               >
                 {item.label}
-
-                {/* underline */}
-                <span
-                  className={cn(
-                    "absolute -bottom-2 left-0 h-[2px] w-full scale-x-0 bg-neutral-900 transition-transform duration-200",
-                    isActive && "scale-x-100"
-                  )}
-                />
-              </Link>
+              </button>
             );
           })}
         </nav>
 
-        {/* Right: icons */}
+        {/* jobb oldali ikonok maradhatnak */}
         <div className="flex items-center gap-4">
           <button
             type="button"
@@ -79,29 +107,6 @@ export function Navbar() {
           >
             <User className="h-5 w-5" />
           </Link>
-        </div>
-      </div>
-
-      {/* Mobile nav (simple) */}
-      <div className="mx-auto block max-w-6xl px-4 pb-2 md:hidden">
-        <div className="flex gap-5 overflow-x-auto py-2">
-          {navItems.map((item) => {
-            const isActive =
-              pathname === item.href || pathname?.startsWith(item.href + "/");
-
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "whitespace-nowrap text-sm font-medium text-neutral-800",
-                  isActive && "underline decoration-2 underline-offset-8"
-                )}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
         </div>
       </div>
     </header>

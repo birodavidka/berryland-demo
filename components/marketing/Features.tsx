@@ -29,7 +29,7 @@ const features: Feature[] = [
 
 const Features = () => {
   return (
-    <section className="w-full">
+    <section className="w-full" id="features">
       <div className="mx-auto max-w-6xl px-4 py-16 text-center sm:px-6 lg:py-24">
         {/* Heading */}
         <h2 className="text-4xl font-light tracking-[0.18em] text-emerald-800 sm:text-5xl">
